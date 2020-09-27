@@ -1,7 +1,7 @@
 name: NestJS API
 
 on: 
-  commit: 
+  push: 
     branches: 
       - '*'
 
