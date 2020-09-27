@@ -1,6 +1,7 @@
 name: NestJS API
 
-on: [commit]
+on: 
+  commit: *
 
 jobs:
   build:
