@@ -10,6 +10,7 @@ export class MoviesService {
   getAll(): Movie[] {
     return this.movies;
   }
+
   getOne(id: number): Movie | undefined {
     const movie = this.movies.find(movie => movie.id === id);
     if (!movie) {

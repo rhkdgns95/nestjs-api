@@ -29,3 +29,6 @@ jobs:
 
     - name: Unit Testing
       run: npm run test:cov
+
+    - name: E2E Testing
+      run: npm run test:e2e

@@ -156,13 +156,25 @@ ___
   - 모든 시스템을 테스팅함.
   - 예를들어, 특정 페이지로 이동시 해당 페이지가 나와야하는경우 사용됨(사용자 관점에서의 흐름)
     (특정 링크를 클릭시 해당 링크에 대한 페이지 정보가 제공되어지는 것과 같음)
-- 
+  - 보통의 앱에서는 테스트시 2개의 DB서버를 갖음.
+  - 하나는 테스팅용 다른하나는 운용에서 쓰임.
+  - 주의점
+    ```ts
+      const moduleFixture: TestingModule = await Test.createTestingModule({
+        imports: [AppModule],
+      }).compile();
+
+      app = moduleFixture.createNestApplication();
+      await app.init();
+      // 주의! app은 test에서 새로 생성이됨.
+      // 테스트가 아닌 앱의 main.ts에서 NestFactory.create() 이후의 app.useGlobalPipes()을 통해 props의 타입을 transform: true 옵션으로 자동 타입변환이 되었으므로, test에서도 적용해주도록 해야함.
+    ```
 ___
 
 
 ## Commands
 ```bash
-$ n est new  # nestjs의 프로젝트를 초기화.
+$ nest new .  # nestjs의 프로젝트를 초기화.
 $ nest g co [파일명]  
 # g: generate, co: controller 으로 특정 모듈에 필요한 컨트롤러를 갖는 'src/[파일명]/[파일명].controller'생성해줌. 
 # 또한 app.module.ts에서 controllers에서 자동으로 추가됨.
